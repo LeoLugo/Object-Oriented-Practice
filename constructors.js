@@ -36,10 +36,48 @@ function expect(target) {
 //
 // Only add code to *THIS* section!
 
+// dog status owner
+// humans feed
 // ????????
-// ????????
-// ????????
+function Dog(obj) {
+  if (obj) {
+    this.status = "normal"
+    this.color = "black"
+    this.owner = undefined
+    if (obj.hasOwnProperty('hungry')) {
+      this.hungry = obj.hungry
+    } else {
+      this.hungry = true
+    }
+  } else {
+    this.status = "normal"
+    this.color = "black"
+    this.owner = undefined
+    this.hungry = true
+  }
+}
 
+function Human(obj) {
+  if(obj) {
+    this.pet = function(dog) {
+      dog.status = "happy"
+    }
+    this.feed = function(dog) {
+      dog.hungry = false
+    }
+    obj.hasOwnProperty("cool") ? this.cool = obj.cool : this.cool = false
+
+  } else {
+    this.pet = function(dog) {
+      dog.status = "happy"
+    }
+    this.feed = function(dog) {
+      dog.hungry = false
+    }
+    this.cool = false
+  }
+
+}
 
 //        __
 //   ____/ /___  ____ ______
@@ -47,7 +85,6 @@ function expect(target) {
 // / /_/ / /_/ / /_/ (__  )
 // \__,_/\____/\__, /____/
 //            /____/
-
 var sadie = new Dog({
   color: "black",
   hungry: false
@@ -59,6 +96,26 @@ var moonshine = new Dog({
 
 var atticus = new Dog();
 
+
+/*
+var Dog = {
+  color: 'black',
+  hungry: true,
+  status: 'normal'
+}
+
+var sadie = Object.create(Dog)
+sadie.color = "black"
+sadie.hungry = false
+sadie.status = "normal"
+
+var moonshine = Object.create(Dog)
+moonshine.color = "blue-red"
+moonshine.hungry = true
+
+var atticus = Object.create(Dog)
+
+*/
 
 //     __
 //    / /_  __  ______ ___  ____ _____  _____
@@ -114,3 +171,7 @@ it("should make Julia cool and Mason not cool", function(){
   expect(julia.cool).toBe(true);
   expect(mason.cool).toBe(false);
 });
+
+
+
+
